@@ -2,10 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'signup.dart';
 
-void main(){
-  runApp(new MyApp());
-}
+
+void main()
+  =>runApp(new MyApp());
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -14,6 +17,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: <String,WidgetBuilder>{
+        '/signup':(BuildContext context)=>new SignupPage(),
+
+
+      },
+
       home: new MyHomePage(),
     );
 
@@ -38,13 +47,15 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: Image(
               image:AssetImage('image/image2.jpg'),
-                  fit: BoxFit.fill,
+              fit: BoxFit.fill,
             ),
           ),
+
 
          Container(
            child: Stack(
           children:<Widget>[
+
 
             Container(
           padding: EdgeInsets.fromLTRB(50,0,0,0),
@@ -91,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(height:10,width:0),
                 TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'PASSWORD',
                     labelStyle: TextStyle(
@@ -112,7 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.green,
                     elevation: 7.0,
                     child: GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        
+                      },
                        child:Center(
                         child: Text('LOGIN' ,
                          style: TextStyle(
@@ -123,6 +137,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 ),
+                SizedBox(height: 60,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'New To Alienwear?',
+                      style: TextStyle(
+                        fontFamily: 'Anton',
+                        fontSize: 10,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 1,
+                            ),
+    ),
+                    SizedBox(width:5) ,
+                    InkWell(
+                    onTap: (){
+                      Navigator.of(context).pushNamed('/signup');
+                    },
+                    child: Text(
+    'register',
+    style: TextStyle(
+    color: Colors.lightBlueAccent ,
+      fontFamily: 'girassol',
+      fontWeight: FontWeight.bold,
+
+    ),
+
+
+                      ),
+                    )
+                  ],
+                )
+
+
               ],
             ),
           ),
